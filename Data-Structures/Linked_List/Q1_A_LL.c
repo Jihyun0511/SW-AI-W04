@@ -11,11 +11,17 @@ Purpose: Implementing the required functions for Question 1 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 링크드 리스트의 노드
+// 값
+// 다음 노드의 주소
 typedef struct _listnode{
 	int item;
 	struct _listnode *next;
 } ListNode;			// You should not change the definition of ListNode
 
+// 링크드 리스트
+// 리스트에 연결된 총 노드의 개수 (링크드 리스트의 사이즈)
+// 링크드 리스트의 head (첫 노드의 주소)
 typedef struct _linkedlist{
 	int size;
 	ListNode *head;
@@ -42,7 +48,7 @@ insertSortedLL() 함수 작성
 성공적으로 작동하지 않으면 -1 리턴
 연결 리스트는 정렬된 연결 리스트거나 빈 리스트.
 
-int insertSortedLL(LinkedList *ll, int item); 형태워
+int insertSortedLL(LinkedList *ll, int item); 형태임
 */
 
 //////////////////////////// main() //////////////////////////////////////////////
@@ -102,7 +108,25 @@ int main()
 // 작성해야 하는 함수
 int insertSortedLL(LinkedList *ll, int item)
 {
+	ListNode *cur = ll->head; // 시작점 설정
+	int index = 0;
 	
+	// 노드 순회하며 중복 확인
+	while (cur != NULL) {
+		if (item == cur->item) { return -1; }
+		
+		if (item < cur->item) { break; }
+
+		// 다음 노드로 이동
+		cur = cur->next;
+		index++;
+	}
+
+	// 삽입하기
+	insertNode(ll, index, item);
+
+	// 결과 리턴
+	return index;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +164,7 @@ void removeAllItems(LinkedList *ll)
 }
 
 
+// 노드의 포인터 리턴
 ListNode *findNode(LinkedList *ll, int index){
 
 	ListNode *temp;
@@ -162,6 +187,7 @@ ListNode *findNode(LinkedList *ll, int index){
 	return temp;
 }
 
+// 노드 삽입
 int insertNode(LinkedList *ll, int index, int value){
 
 	ListNode *pre, *cur;
