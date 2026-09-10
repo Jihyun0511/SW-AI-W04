@@ -33,6 +33,17 @@ ListNode *findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/* 
+insertSortedLL() 함수 작성
+입력값: int
+입력받은 정수를 오름차순으로 linked list에 넣음.
+링크드 리스트 내에 이미 존재하는 정수값을 넣는 것을 허용하지 않음.
+새 요소가 추가되면 해당 요소의 index position을 리턴.
+성공적으로 작동하지 않으면 -1 리턴
+연결 리스트는 정렬된 연결 리스트거나 빈 리스트.
+
+int insertSortedLL(LinkedList *ll, int item); 형태워
+*/
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -88,9 +99,10 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 작성해야 하는 함수
 int insertSortedLL(LinkedList *ll, int item)
 {
-	/* add your code here */
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
