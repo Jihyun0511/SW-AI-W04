@@ -11,12 +11,16 @@ Purpose: Implementing the required functions for Question 2 */
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 링크드 리스트 노드
+// 값, 다음 주소
 typedef struct _listnode
 {
 	int item;
 	struct _listnode *next;
 } ListNode;			// You should not change the definition of ListNode
 
+// 링크드 리스트
+// 리스트 사이즈, 시작점
 typedef struct _linkedlist
 {
 	int size;
@@ -35,6 +39,13 @@ ListNode *findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2) 작성
+리스트 1의 alternate positions에 리스트 2의 노드들을 삽십하는 함수
+단, 두 번째 리스트의 노드는 첫 번째 리스트에 삽입할 수 있는 교차 위치가 있는 경우에만 삽입됨
+입력값: 리스트 1, 리스트 2
+리스트2를 리스트1 사이에 끼워넣으면서 합치는 거임
+*/
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -101,6 +112,7 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 작성해야 하는 함수
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
     /* add your code here */
