@@ -115,7 +115,32 @@ int main()
 // 작성해야 하는 함수
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+	// 각각 헤드 세팅
+	ListNode *cur1 = ll1->head;
+	ListNode *cur2 = ll2->head;
+	ListNode *next1, *next2;
+
+    while (cur1 != NULL && cur2 != NULL)
+    {
+        // 끊기 전에 다음 노드들을 미리 저장
+        next1 = cur1->next;
+        next2 = cur2->next;
+
+        // cur2를 cur1과 next1 사이에 끼워넣기
+        cur2->next = next1;
+        cur1->next = cur2;
+
+        // 사이즈 갱신. 이걸 해야 다른 함수에서도 사용 가능
+        ll1->size++;
+        ll2->size--;
+
+        // 각자 다음 위치로 이동
+        cur1 = next1;
+        cur2 = next2;
+    }
+
+    // 리스트2의 head를 남은 노드들(또는 NULL)로 갱신
+    ll2->head = cur2;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
