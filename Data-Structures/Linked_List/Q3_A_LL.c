@@ -111,7 +111,8 @@ void moveOddItemsToBack(LinkedList *ll)
 			int temp = cur->item;
 
 			removeNode(ll, index);
-			insertNode(ll, ll->size, temp); // size 그냥 사용하시면 remove 해서 한 칸 줄어든 상태라 터짐
+			// size 그냥 사용하시면 remove 해서 한 칸 줄어든 상태라 터짐 새로 불러옵시다
+			insertNode(ll, ll->size, temp);
 			cur = next_node;
 		}
 		else {
