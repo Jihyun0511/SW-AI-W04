@@ -86,7 +86,26 @@ int main()
 
 void moveEvenItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	// 3번 홀수랑 같은 로직입니다
+
+	ListNode *cur = ll->head;
+	int index = 0;
+
+	for(int i = 0; i < ll->size; i++) {
+		if (cur->item % 2 == 0) {
+			ListNode *next_node = cur->next;
+			int temp = cur->item;
+
+			removeNode(ll, index);
+			insertNode(ll, ll->size, temp);
+
+			cur = next_node;
+		}
+		else {
+			index++;
+			cur = cur->next;
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
