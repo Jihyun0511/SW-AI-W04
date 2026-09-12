@@ -28,11 +28,17 @@ typedef struct _linkedlist{
 void frontBackSplitLinkedList(LinkedList* ll, LinkedList *resultFrontList, LinkedList *resultBackList);
 
 void printList(LinkedList *ll);
+// 음? 이거 정의부랑 선언부 인자 달라도 됨?
 void removeAllItems(LinkedList *l);
 ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	frontBackSplitLinkedList(LinkedList* ll, LinkedList *resultFrontList, LinkedList *resultBackList) 작성
+	하나의 링크드 리스트를 정확히 반으로 쪼갭니다!
+	요소가 홀수 개면, 남는 놈은 앞쪽으로 감
+*/
 
 ///////////////////////////// main() /////////////////////////////////////////////
 
@@ -102,7 +108,24 @@ int main()
 
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
-	/* add your code here */
+	// 사이즈가 짝수면 사이즈 반만큼 순회 돈다
+	// 사이즈가 홀수면 사이즈 반 + 1 만큼 순회 돈다
+	// 메인에서 remove로 원본, 프론트, 백 전부 날려주니까 원본 보존 신경 안 써도 됨
+	// 근데 남겨두는 게 정석이긴 해용
+	
+	ListNode *cur = ll->head;
+	int size = ll->size;
+	int half = (size + 1) / 2;
+
+	for (int i = 0; i < size; i++) {
+		if (i < half) {
+			insertNode(resultFrontList, resultFrontList->size, cur->item);
+		}
+		else {
+			insertNode(resultBackList, resultBackList->size, cur->item);
+		}
+		cur = cur->next;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
