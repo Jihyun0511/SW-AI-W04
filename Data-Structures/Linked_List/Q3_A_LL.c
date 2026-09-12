@@ -35,6 +35,12 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	moveOddItemsToBack(LinkedList *ll) 작성
+	홀수 정수를 링크드 리스트의 가장 뒤로 보내는 함수
+	크기 순으로 보내는 건 아니고 그냥 앞에서부터 순서대로 보낸다
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -86,7 +92,7 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
-	/* add your code here */
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
