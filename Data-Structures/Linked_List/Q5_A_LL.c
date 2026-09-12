@@ -28,7 +28,7 @@ typedef struct _linkedlist{
 void frontBackSplitLinkedList(LinkedList* ll, LinkedList *resultFrontList, LinkedList *resultBackList);
 
 void printList(LinkedList *ll);
-// 음? 이거 정의부랑 선언부 인자 달라도 됨?
+// 음? 이거 정의부랑 선언부 인자 달라도 됨? 된대용
 void removeAllItems(LinkedList *l);
 ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
@@ -106,7 +106,8 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
+// 요소 하나씩 옮기는 방식
+void frontBackSplitLinkedList_insert(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	// 사이즈가 짝수면 사이즈 반만큼 순회 돈다
 	// 사이즈가 홀수면 사이즈 반 + 1 만큼 순회 돈다
@@ -126,6 +127,42 @@ void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, Linke
 		}
 		cur = cur->next;
 	}
+}
+
+// 노드 중간에서 끊는 방식
+void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
+{
+	// 빈 리스트일때
+	if (ll == NULL || ll->size == 0) {
+        resultFrontList->head = NULL;
+        resultFrontList->size = 0;
+        resultBackList->head = NULL;
+        resultBackList->size = 0;
+        if (ll != NULL) ll->size = 0; // ll->head는 이미 NULL
+        return;
+    }
+	
+	ListNode *cur = ll->head;
+	int half = (ll->size + 1) / 2;
+
+	// 앞리스트 헤드 연결
+	resultFrontList->head = ll->head;
+
+	for (int index = 1; index < half; index++) {
+		cur = cur->next;
+	}
+
+	// 다음 노드를 뒷리스트 헤드에 연결
+	resultBackList->head = cur->next;
+	// 뒤 날림
+	cur->next = NULL;
+
+	// 사이즈 갱신
+	resultFrontList->size = half;
+	resultBackList->size = ll->size - half;
+
+	ll->head = NULL;
+	ll->size = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
