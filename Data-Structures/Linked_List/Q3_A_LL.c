@@ -103,6 +103,9 @@ void moveOddItemsToBack(LinkedList *ll)
 	int index = 0;
 	
 	// 큐 원래 길이만큼 순회를 돈다
+	// 주의!! 반복문 돌다가 ll->size가 변하면 반복 횟수도 바뀐다
+	// 이건 remove한 후에 insert 해줘서 괜찮은데, 아닌 경우도 많을 거임
+	// 변수로 따로 빼서 값을 고정시키는 게 안전하다
 	for (int i = 0; i < ll->size; i++) {
 		// 홀수면 뒤로 보내기
 		if (cur->item % 2 != 0) {
