@@ -92,7 +92,34 @@ int main()
 
 void moveOddItemsToBack(LinkedList *ll)
 {
+	// 큐 원래 길이만큼 순회를 돈다
+	// 홀수면 뒤로 보내기
+	// 원래 주소, 값 복사해놓고 remove, insert
+	// 주의! 값 리무브하고 인서트하면 인덱스가 밀려요
+	// 홀수라서 뒤로물렸으면 인덱스 그대로, 안물렸으면 인덱스 추가
+
+	// 헤드 설정
+	ListNode *cur = ll->head;
+	int index = 0;
 	
+	// 큐 원래 길이만큼 순회를 돈다
+	for (int i = 0; i < ll->size; i++) {
+		// 홀수면 뒤로 보내기
+		if (cur->item % 2 != 0) {
+			 // 노드 삭제하기 전에 주소, 값 미리 저장 (댕글링 포인터 예방)
+			ListNode *next_node = cur->next;
+			int temp = cur->item;
+
+			removeNode(ll, index);
+			insertNode(ll, ll->size, temp); // size 그냥 사용하시면 remove 해서 한 칸 줄어든 상태라 터짐
+			cur = next_node;
+		}
+		else {
+			// 짝수일 때만 인덱스를 늘려준다. 홀수일 때는 노드가 한칸씩 앞으로 밀리니까
+			index++;
+			cur = cur->next;
+		}
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
