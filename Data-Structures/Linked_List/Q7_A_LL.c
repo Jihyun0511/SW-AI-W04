@@ -35,6 +35,11 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	void RecursiveReverse(ListNode **ptrHead); 작성
+	주어진 링크드 리스트를 뒤집는 함수
+	헤드, 넥스트 포인터를 바꾸는 방식으로 재귀적으로 뒤집어야 함
+*/
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -87,7 +92,24 @@ int main()
 
 void RecursiveReverse(ListNode **ptrHead)
 {
-	/* add your code here */
+	// 내 헤드는 항상 내 헤드
+	// 내가 갈 곳이 다음놈 헤드에서 이전놈 헤드로 바뀌는 것일 뿐임
+
+	// 비었거나, 노드 하나면 걍 리턴
+	if (ptrHead == NULL || (*ptrHead)->next == NULL) {return;}
+
+	// 나랑, 떨거지들
+	ListNode *first = *ptrHead;
+	ListNode *rest = first->next;
+
+	// 떨거지들 재귀
+	RecursiveReverse(&rest);
+
+	// 나 ㄱㄱ
+	first->next->next = first; // 다음 놈이 나한테 오게
+	first->next = NULL; // 뒤에는 아무것도 없어용 몰라용
+
+	*ptrHead = rest; // 내 head는 떨거지 전부...
 }
 
 //////////////////////////////////////////////////////////////////////////////////
