@@ -91,6 +91,9 @@ void moveEvenItemsToBack(LinkedList *ll)
 	ListNode *cur = ll->head;
 	int index = 0;
 
+	// 주의!! 반복문 돌다가 ll->size가 변하면 반복 횟수도 바뀐다
+	// 이건 remove한 후에 insert 해줘서 괜찮은데, 아닌 경우도 많을 거임
+	// 변수로 따로 빼서 값을 고정시키는 게 안전하다
 	for(int i = 0; i < ll->size; i++) {
 		if (cur->item % 2 == 0) {
 			ListNode *next_node = cur->next;

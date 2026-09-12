@@ -35,6 +35,11 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	int moveMaxToFront(ListNode **ptrHead); 작성
+	함수는 링크드 리스트를 최대 한 번 순회하고,
+	가장 큰 값을 가진 노드를 맨 앞으로 보낸다.
+*/
 
 //////////////////////////// main() //////////////////////////////////////////////
 
@@ -86,9 +91,35 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
+// 구현해야 하는 함수
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+    // 들어오는 파라미터: ll.head
+	// 얘를 우떠케 쓰면 좋을까나
+
+	ListNode *cur = *ptrHead; // *ptrHead는 ll->head랑 같음
+	ListNode *maxCur = *ptrHead;
+	ListNode *prev = NULL;
+	ListNode *maxPrev = NULL;
+
+	// 찾기
+	while (cur != NULL) {
+		if (cur->item > maxCur->item){
+			maxCur = cur;
+			maxPrev = prev;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+	
+	// 다 돌고 제일 큰 놈 앞으로
+	if (maxPrev != NULL) {
+		maxPrev->next = maxCur->next;
+		maxCur->next = *ptrHead;
+		*ptrHead = maxCur;
+	}
+
+	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
