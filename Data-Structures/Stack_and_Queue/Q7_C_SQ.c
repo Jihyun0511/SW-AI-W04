@@ -108,8 +108,7 @@ int main()
 }
 
 ////////////////////////////////////////////////////////////
-int balanced(char *expression)
-{
+int balanced(char *expression) {
 	Stack s;
 	s.ll.head = NULL;
 	s.ll.size = 0;
@@ -135,7 +134,7 @@ int balanced(char *expression)
     } else {
         return 0; // 뭔가 남아있으면 false
     }
-
+}
 ////////////////////////////////////////////////////////////
 
 void removeAllItemsFromStack(Stack *s)
