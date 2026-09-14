@@ -137,10 +137,11 @@ void removeEvenValues(Stack *s)
 	tempStack.ll.head = NULL;
 	tempStack.ll.size = 0;
 
-	for (int i =0; i<size; i++) {
+	for (int i = 0; i<size; i++) {
 		int item = pop(s);
 
 		if(item % 2 != 0) {
+			// tempStack의 주소값을 넘겨주는 거임 (s는 s본체라서)
 			push(&tempStack, item);
 		}
 	}
@@ -157,6 +158,11 @@ void removeEvenValues(Stack *s)
 
 void push(Stack *s, int item)
 {
+	// s는 이미 포인터. 포인터 안의 내용물을 꺼낼 때에는 -> 사용
+	// 그런데 insertNode 함수는 첫 번째 파라미터로 *ll(ll의 주소)를 받음
+	// s->ll 은 링크드 리스트 본체임
+	// 따라서 주소를 주기 위해 &(s->ll)
+	// 스택 안에 있는 링크드 리스트의 주소! 를 넘김
 	insertNode(&(s->ll), 0, item);
 }
 
