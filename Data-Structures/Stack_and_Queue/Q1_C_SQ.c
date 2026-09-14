@@ -125,6 +125,9 @@ int main()
 // 링크드 리스트에서 큐 만들기
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
+	// 비워주기 (조건 안 따져도 똑같음)
+	removeAllItemsFromQueue(q);
+
 	ListNode *cur = ll->head;
 	
 	while (cur != NULL) {
