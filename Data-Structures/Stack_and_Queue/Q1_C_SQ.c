@@ -46,6 +46,14 @@ int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 void removeAllItems(LinkedList *ll);
 
+/*
+	void createQueueFromLinkedList(LinkedList *ll, Queue *q); 구현
+	링크드 리스트 기반의 큐를 만드는 createQueue... 함수 작성
+	링크드 리스트 안의 모든 정수를 큐에 넣는다
+	링크드 리스트의 가장 앞 노드가 제일 먼저 들어감. 그 다음 두번째, ...
+	큐가 비어있지 않다면 비우는 것도 잊지 말 것!!
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -116,7 +124,12 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	ListNode *cur = ll->head;
+	
+	while (cur != NULL) {
+		enqueue(q, cur->item);
+		cur = cur->next;
+	}
 }
 
 void removeOddValues(Queue *q)
