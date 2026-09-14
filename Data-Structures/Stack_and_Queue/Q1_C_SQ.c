@@ -122,6 +122,7 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// 링크드 리스트에서 큐 만들기
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
 	ListNode *cur = ll->head;
@@ -132,9 +133,22 @@ void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 	}
 }
 
+// 큐에서 홀수 없애기
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	// c의 큐는 사실상 링크드 리스트인 거지?
+	// 그럼 헤드에서 시작해서 노드 옮겨가면서 홀수인지 확인
+	// 홀수면 remove해준다 (이전칸이랑 다음 칸이랑 이어붙여주고, 원래 칸 해제하기)
+	// 근데 dequeue 함수가 있네요!!
+	int size = q->ll.size;
+
+	for (int i =0; i < size; i++) {
+		int item = dequeue(q);
+
+		if (item % 2 == 0) {
+			enqueue(q, item);
+		}
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
