@@ -48,6 +48,12 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	int balanced(char *expression); 작성
+	() [] {} 짝이 맞는지 확인한다
+	스택 써서 푸시팝
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -104,8 +110,31 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
-}
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+
+	for (int i = 0; expression[i] != '\0'; i++) {
+		if (expression[i] == '(' || expression[i] == '[' || expression[i] == '{' ) {
+			push(&s, expression[i]);
+		}
+		else if (expression[i] == ')' || expression[i] == ']' || expression[i] == '}') {
+			// 넣어서, 빼려고 하는데, 비어있으면 false
+			if (isEmptyStack(&s)) { return 0; }
+
+			// 짝 안 맞으면 false
+			if (pop(&s) == '(' && expression[i] != ')') { return 0; }
+			if (pop(&s) == '{' && expression[i] != '}') { return 0; }
+			if (pop(&s) == '[' && expression[i] != ']') { return 0; }
+		}
+	}
+
+	// 다 돌고 다 꺼냈는지 확인
+	if (isEmptyStack(&s)) {
+        return 1; // 비었으면 true
+    } else {
+        return 0; // 뭔가 남아있으면 false
+    }
 
 ////////////////////////////////////////////////////////////
 
