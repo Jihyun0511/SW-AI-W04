@@ -46,6 +46,13 @@ int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 void removeAllItems(LinkedList *ll);
 
+/*
+	void createStackFromLinkedList(LinkedList *ll , Stack *stack);
+	void removeEvenValues(Stack *s); 구현
+	링크드 리스트에 있는 모든 정수들을 스택에 넣어준다
+	스택이 비어있지 않다면 비우는 것도 잊지 말 것
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -113,12 +120,37 @@ int main()
 
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
-    /* add your code here */
+    removeAllItemsFromStack(s);
+
+	ListNode *cur = ll->head;
+
+	while(cur != NULL) {
+		push(s, cur->item);
+		cur = cur->next;
+	}
 }
 
 void removeEvenValues(Stack *s)
 {
-	/* add your code here */
+	int size = s->ll.size;
+	Stack tempStack;
+	tempStack.ll.head = NULL;
+	tempStack.ll.size = 0;
+
+	for (int i =0; i<size; i++) {
+		int item = pop(s);
+
+		if(item % 2 != 0) {
+			push(&tempStack, item);
+		}
+	}
+
+	while (!isEmptyStack(&tempStack)) {
+	// while (&tempStack != NULL)
+	// 이렇게 하면 지역 변수는 무조건 실존하는 공간을 받아서 NULL이 될 수 없다
+		int item = pop(&tempStack);
+		push(s, item);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
