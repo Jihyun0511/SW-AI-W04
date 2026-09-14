@@ -142,12 +142,14 @@ void removeOddValues(Queue *q)
 	// c의 큐는 사실상 링크드 리스트인 거지?
 	// 그럼 헤드에서 시작해서 노드 옮겨가면서 홀수인지 확인
 	// 홀수면 remove해준다 (이전칸이랑 다음 칸이랑 이어붙여주고, 원래 칸 해제하기)
-	// 근데 dequeue 함수가 있네요!!
+	// 근데 dequeue 함수가 있네요!! 이걸 씁시다
 	int size = q->ll.size;
 
 	for (int i =0; i < size; i++) {
+		// 앞에서부터 하나씩 빼본다
 		int item = dequeue(q);
-
+		
+		//짝수면 맨뒤에 넣는다 (홀수는 버려짐)
 		if (item % 2 == 0) {
 			enqueue(q, item);
 		}

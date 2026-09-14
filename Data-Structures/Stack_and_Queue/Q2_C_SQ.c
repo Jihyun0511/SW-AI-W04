@@ -130,6 +130,7 @@ void createStackFromLinkedList(LinkedList *ll, Stack *s)
 	}
 }
 
+// 스택에서 짝수 없애기
 void removeEvenValues(Stack *s)
 {
 	int size = s->ll.size;
@@ -148,7 +149,7 @@ void removeEvenValues(Stack *s)
 
 	while (!isEmptyStack(&tempStack)) {
 	// while (&tempStack != NULL)
-	// 이렇게 하면 지역 변수는 무조건 실존하는 공간을 받아서 NULL이 될 수 없다
+	// 이렇게 하면 지역 변수는 무조건 실존하는 공간의 주소를 받아서 NULL이 될 수 없다
 		int item = pop(&tempStack);
 		push(s, item);
 	}

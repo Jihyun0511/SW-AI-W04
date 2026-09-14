@@ -45,6 +45,13 @@ int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 void removeAllItems(LinkedList *ll);
 
+/*
+	int isStackPairwiseConsecutive(Stack *s); 작성
+	주어진 스택을 둘씩 짝지었을때 (pairwise)
+	각 페어가 연속된 수(consecutive)인지 (차이가 1인지) 판정
+	구현은 push() 와 pop()을 사용하여 한다
+*/
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 int main()
@@ -103,7 +110,17 @@ int main()
 
 int isStackPairwiseConsecutive(Stack *s)
 {
-  /* add your code here */
+	int size = s->ll.size;
+
+	if (size % 2 != 0) { return 0; }
+
+	for (int i = 0; i < size; i = i + 2) {
+		int item1 = pop(s);
+		int item2 = pop(s);
+		if (abs(item1 - item2) != 1) {return 0;}
+	}
+
+	return 1;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
