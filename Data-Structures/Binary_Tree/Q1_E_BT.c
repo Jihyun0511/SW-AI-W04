@@ -41,6 +41,13 @@ BTNode* pop(Stack *stk);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    int identical(BTNode *tree1, BTNode *tree2); 구현
+    이진트리 두 개가 구조적으로 동일한지 확인하는 재귀함수
+    같으면 1, 다르면 0 리턴
+    구조(비어있는지 아닌지, 좌우 서브트리 구성 등 전부)가 동일해야 함
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -113,10 +120,24 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int identical(BTNode *tree1, BTNode *tree2)
+int identical(BTNode *tree1, BTNode *tree2) {
+    // 주어진 트리를 순회하면서... 루트 같은지, 좌우 같은지 확인해본다?
+    // 기본 로직은 이거같은데... left와 right가 자체적으로 root가 될 수 있잖음?
+    // 그럼 이걸로 재귀를 타야 하는데...
 
-{
-   /* add your code here */
+    //// 루트 판정
+    // 둘 다 비어있는 경우
+    if (tree1 == NULL && tree2== NULL) { return 1; }
+
+    // 둘 중 하나만 비어있음
+    if (tree1 == NULL || tree2 == NULL) { return 0; }
+    // 주의: 아이템 없는데 tree->item 하면 터지심
+
+    // 값 있는데, 다름
+    if (tree1->item != tree2->item) { return 0; }
+
+    // 좌우 노드 비교
+    return identical(tree1->left, tree2->left) && identical(tree1->right, tree2->right);
 }
 
 /////////////////////////////////////////////////////////////////////////////////
