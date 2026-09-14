@@ -56,6 +56,14 @@ int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 void removeAllItems(LinkedList *ll);
 
+/*
+	void reverse(Queue *q); 작성
+	스택을 사용해서 큐를 뒤집는 함수
+	스택을 건드릴 때는 push()와 pop()만 사용한다
+	큐를 건드릴 때는 enqueue()와 dequeue() 만 사용한다
+	스택을 비우는 것도 잊지 말자!
+*/
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -112,7 +120,22 @@ int main()
 
 void reverse(Queue *q)
 {
-/* add your code here */
+	int size = q->ll.size;
+
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+	s.ll.tail = NULL;
+
+	// 큐에서 꺼내서 스택에 넣기
+	for(int i = 0; i < size; i++) {
+		push(&s, dequeue(q));
+	}
+
+	// 스택에서 꺼내서 다시 큐에 넣기
+	for(int i = 0; i < size; i++) {
+		enqueue(q, pop(&s));
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
