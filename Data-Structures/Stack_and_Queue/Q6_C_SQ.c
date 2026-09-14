@@ -47,6 +47,11 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	void removeUntil(Stack *s, int value); 구현
+	원하는 값이 나올 때까지 값을 pop하는 함수
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -111,7 +116,12 @@ int main()
 
 void removeUntil(Stack *s, int value)
 {
-/* add your code here */
+	while (s->ll.size != 0) {
+		if (value == peek(s)) { 
+			break; 
+		}
+		pop(s);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
