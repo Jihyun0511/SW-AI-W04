@@ -46,6 +46,11 @@ ListNode * findNode(LinkedList *ll, int index);
 int insertNode(LinkedList *ll, int index, int value);
 int removeNode(LinkedList *ll, int index);
 
+/*
+	void recursiveReverse(Queue *q); 작성
+	큐에 있는 정수값들을 뒤집어주는 재귀 함수 구현
+*/
+
 //////////////////////////// main() //////////////////////////////////////////////
 
 int main()
@@ -109,7 +114,15 @@ int main()
 
 void recursiveReverse(Queue *q)
 {
-/* add your code here */
+	int temp;
+
+	if(q->ll.head == NULL) {return;}
+
+	temp = dequeue(q);
+	
+	recursiveReverse(q);
+	
+	enqueue(q, temp);
 }
 
 //////////////////////////////////////////////////////////////////
