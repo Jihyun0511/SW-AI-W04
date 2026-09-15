@@ -41,6 +41,13 @@ BTNode* pop(Stack *stk);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    int maxHeight(BTNode *node); 작성
+    이진 트리 루트 노드의 포인터를 인자로 받고,
+    루트 노드에서 가장 먼 노드까지의 링크 개수(간선 개수. 노드 개수 아님!)을 리턴
+    그러니까 트리 높이 구하시란 말입니다
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -97,7 +104,18 @@ int main()
 int maxHeight(BTNode *node)
 
 {
-    /* add your code here */
+    // 트리 높이 구하기
+    // 루트가 있고, 좌우가 있다
+    // 베이스 케이스: 좌우 없음, -1
+    // 좌우 있으면... return BTNode left right?
+    if (node == NULL) {return -1;}
+    
+    int leftHeight = maxHeight(node->left);
+    int rightHeight = maxHeight(node->right);
+
+    if(leftHeight > rightHeight) {return leftHeight + 1;}
+    else {return rightHeight + 1;}
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
