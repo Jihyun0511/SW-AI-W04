@@ -44,6 +44,13 @@ BTNode* pop(Stack *stack);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    int countOneChildNodes(BTNode *node);
+    입력: 이진 트리의 루트 노드를 가리키는 포인터
+    출력: 자식 노드를 한개만 가진 노드의 총 개수
+    왼쪽만 있거나 오른쪽만 있어야 함
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -98,10 +105,23 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int countOneChildNodes(BTNode *node)
+int countOneChildNodes(BTNode *node) {
+    // 노드 비어있음
+    if (node == NULL) return 0; 
 
-{
-    /* add your code here */
+    // 왼쪽
+    if (node->left != NULL && node->right == NULL) {
+        return countOneChildNodes(node->left) + 1;
+    }
+    // 오른쪽
+    else if (node->left == NULL && node->right != NULL) {
+        return countOneChildNodes(node->right) + 1;
+    }
+    // 나머지 경우 재귀~
+    else {
+        return countOneChildNodes(node->left) + countOneChildNodes(node->right);
+    }    
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
