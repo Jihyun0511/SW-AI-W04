@@ -46,6 +46,12 @@ BTNode* pop(Stack *stack);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    void printSmallerValues(BTNode *node, int m);
+    주어진 값 m보다 작은 값을 모두 출력
+
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -105,7 +111,14 @@ int main()
 
 void printSmallerValues(BTNode *node, int m)
 {
-	/* add your code here */
+	if (node == NULL) return;
+
+    if (node->item < m) {
+        printf("%d ", node->item);
+    }
+
+    printSmallerValues(node->left, m);
+    printSmallerValues(node->right, m);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
