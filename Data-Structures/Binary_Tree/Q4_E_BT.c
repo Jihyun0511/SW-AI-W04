@@ -46,6 +46,12 @@ BTNode* pop(Stack *stack);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    int sumOfOddNodes(BTNode *root); 작성
+    입력:정수값 가지고 있는 이진 트리의 루트 노드의 포인터
+    출력: 트리에 있는 모든 홀수의 합
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -100,10 +106,16 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int sumOfOddNodes(BTNode *node)
+int sumOfOddNodes(BTNode *node) {
+    // 베이스: 빈 노드면 0
+    if (node == NULL) return 0;
 
-{
-    /* add your code here */
+    // 왼쪽 오른쪽 있을때 없을때 나눌 필요가 없음
+    // 가보고 없으면 베이스케이스에서 걸리니까
+    int root_item = 0;
+    if (node->item % 2 != 0) root_item = node->item;
+    
+    return root_item + sumOfOddNodes(node->left) + sumOfOddNodes(node->right);
 }
 
 //////////////////////////////////////////////////////////////////////////////////

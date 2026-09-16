@@ -107,7 +107,7 @@ int maxHeight(BTNode *node)
     // 트리 높이 구하기
     // 루트가 있고, 좌우가 있다
     // 베이스 케이스: 좌우 없음, -1
-    // 좌우 있으면... return BTNode left right?
+    // 좌우 있으면... return BTNode left right +1?
     if (node == NULL) {return -1;}
     
     int leftHeight = maxHeight(node->left);
