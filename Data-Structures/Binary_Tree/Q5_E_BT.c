@@ -46,6 +46,13 @@ BTNode* pop(Stack *stack);
 void printTree(BTNode *node);
 void removeAll(BTNode **node);
 
+/*
+    void mirrorTree(BTNode *node); 작성
+    원래 구조의 좌우반전된 구조가 되도록 이진 트리를 조작하는 재귀함수
+    임시 트리를 사용해서 옮겨담는다거나... 하면 안 된다!
+    입력: 원본 이진 트리 루트 노드의 포인터
+*/
+
 ///////////////////////////// main() /////////////////////////////////////////////
 
 int main()
@@ -105,7 +112,20 @@ int main()
 
 void mirrorTree(BTNode *node)
 {
-	/* add your code here */
+	// 미러버전 만드는 재귀 함수
+    // 임시 트리 사용 X
+    // 루트 기준으로 왼쪽 오른쪽 노드를 바꾼다
+    // 이거 걍 계속 재귀 태우기
+
+    // 베이스: 루트 그대로, 좌우 바꾸기
+    if (node == NULL) return;
+
+    mirrorTree(node->left);
+    mirrorTree(node->right);
+
+    BTNode *temp = node->left;
+    node->left = node->right;
+    node->right = temp;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
